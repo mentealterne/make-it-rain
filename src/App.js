@@ -16,7 +16,7 @@ export default function App() {
       <Canvas onPointerDown={(e) => console.log('clicked')} shadows gl={{ stencil: false, antialias: false }} camera={{ position: [0, 0, 20], fov: 50, near: 17, far: 40 }}>
 
 
-        <Orbit />
+{/*        <Orbit />*/}
 
 
           <Background />
