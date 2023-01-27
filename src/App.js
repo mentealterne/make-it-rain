@@ -13,8 +13,12 @@ function Background () {
 export default function App() {
   return (
       <div style={{ height: "100vh", width: "100vw" }}>
-      <Canvas onPointerDown={(e) => console.log('clicked')} shadows gl={{ stencil: false, antialias: false }} camera={{ position: [0, 0, 20], fov: 50, near: 17, far: 40 }}>
-
+          <div style={{ position: "absolute", top: '0', left: '0', width: "400px",  zIndex: 1 , display:'flex', flexDirection:'column',justifyContent:'center',justifyItems:'center' }} >
+              <h1 style={{ color: "white", textAlign: "left",margin:0,padding:0 }}>Make it Rain</h1>
+              <p style={{ color: "white", textAlign: "left" }}>Make some money rain every time you get paid for something.</p>
+          </div>
+      <Canvas onPointerDown={(e) => console.log('clicked')} shadows gl={{ stencil: false, antialias: false }} camera={{ position: [-10, 0, 20], fov: 50, near: 17, far: 100 }}>
+          <perspectiveCamera  />
 
 {/*        <Orbit />*/}
 
@@ -51,12 +55,13 @@ export default function App() {
 function Dollars({ count = 300 }) {
     const texture = useLoader(THREE.TextureLoader,'/dollar.jpg');
 
-    const { viewport } = useThree()
+    const { viewport, camera } = useThree()
     const [ref, api] = useBox((index) => ({
         mass: 1,
         position: [4 - Math.random() * 8, viewport.height, 0, 0],
         rotation: [2,2,2],
         args: [1,4,1],
+
 
     }));
 let swing = 0;
@@ -65,6 +70,8 @@ let swing = 0;
         swing += 0.1; // increase swing angle
        api.rotation.set(api.rotation.x,api.rotation.y, Math.sin(swing) * 0.1) // apply swing
     }
+   // after 2 seconds bring the camera y position back to 0
+
     })
   return (
       <instancedMesh ref={ref} castShadow receiveShadow args={[null, null, count]}>
@@ -80,7 +87,7 @@ function Borders() {
       <>
         <Plane position={[0, -viewport.height / 2, 0]} rotation={[-Math.PI / 2, 0, 0]} />
         <Plane position={[-viewport.width / 2 - 1, 0, 0]} rotation={[0, Math.PI / 2, 0]} />
-        <Plane position={[viewport.width / 2 + 1, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
+        <Plane position={[viewport.width / 2 + 100, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
         <Plane position={[0, 0, -1]} rotation={[0, 0, 0]} />
         <Plane position={[0, 0, 12]} rotation={[0, -Math.PI, 0]} />
       </>
