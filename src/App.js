@@ -35,7 +35,7 @@ export default function App() {
             shadow-camera-top={10}
             shadow-camera-bottom={-10}
         />
-        <Physics gravity={[0, -20, 0]} defaultContactMaterial={{ restitution: 1.2 }}>
+        <Physics gravity={[0, -20, 0]} defaultContactMaterial={{ restitution: 0 }}>
           <group position={[0, 0, -10]}>
             <Mouse />
             <Borders />
