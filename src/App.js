@@ -48,7 +48,7 @@ export default function App() {
   )
 }
 
-function Dollars({ count = 200 }) {
+function Dollars({ count = 300 }) {
     const texture = useLoader(THREE.TextureLoader,'/dollar.jpg');
 
     const { viewport } = useThree()
@@ -68,7 +68,7 @@ let swing = 0;
     })
   return (
       <instancedMesh ref={ref} castShadow receiveShadow args={[null, null, count]}>
-        <boxBufferGeometry args={[0.1,1,2]} />
+        <boxBufferGeometry args={[0.03,1,2]} />
         <meshLambertMaterial map={texture} />
       </instancedMesh>
   )
